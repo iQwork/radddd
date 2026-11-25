@@ -255,6 +255,14 @@ html.dark .btn-primary { background: var(--turquoise); color: #05201D; }
 mark[class^="hl-"] { color: inherit; padding: 1px 5px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: box-shadow 0.18s ease, filter 0.18s ease; }
 mark[data-pair] { cursor: pointer; }
 mark.hl-pair-active { box-shadow: 0 0 0 2px var(--turquoise), 0 3px 10px rgba(13, 148, 136, 0.22); filter: brightness(0.97); }
+@keyframes msSyncPulse {
+  0%, 100% { box-shadow: 0 0 0 2px #0D9488, 0 0 12px rgba(13, 148, 136, 0.45); }
+  50% { box-shadow: 0 0 0 4px #F59E0B, 0 0 18px rgba(245, 158, 11, 0.55); }
+}
+mark.ms-sync-flash {
+  box-shadow: 0 0 0 2.5px #0D9488, 0 0 14px rgba(13, 148, 136, 0.48);
+  animation: msSyncPulse 1.3s ease-in-out 3;
+}
 .hl-def { background: var(--hl-def); }
 .hl-func { background: var(--hl-func); }
 .hl-cause { background: var(--hl-cause); }
@@ -377,6 +385,63 @@ html.dark .visual-stage.dark-capable { background-color: #0B1628; color: var(--t
 .ms-stage-viewport.xray-active .ms-stage-img {
   filter: grayscale(1) contrast(1.42) brightness(0.92);
 }
+.ms-split-xray-img {
+  position: absolute;
+  inset: 0;
+  display: none;
+  filter: grayscale(1) contrast(1.42) brightness(0.92);
+}
+.ms-stage-viewport.split-active .ms-split-xray-img {
+  display: block;
+}
+.ms-split-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #2DD4BF;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.75);
+  z-index: 5;
+  pointer-events: none;
+  transform: translateX(-1px);
+}
+.ms-split-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #0F172A;
+  color: #5EEAD4;
+  border: 2px solid #2DD4BF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+  pointer-events: auto;
+  cursor: ew-resize;
+}
+.ms-split-tag-l,
+.ms-split-tag-r {
+  position: absolute;
+  bottom: 12px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-family: var(--font-ar);
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+  background: rgba(7, 15, 29, 0.88);
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  color: #F8FAFC;
+  direction: rtl;
+}
+.ms-split-tag-l { right: 10px; }
+.ms-split-tag-r { left: 10px; border-color: rgba(56, 189, 248, 0.55); color: #7DD3FC; }
 .ms-xray-vignette {
   position: absolute;
   inset: 0;
@@ -422,27 +487,43 @@ html.dark .visual-stage.dark-capable { background-color: #0B1628; color: var(--t
   opacity: 0 !important;
   pointer-events: none !important;
 }
+/* Compact clean anatomical marker dots (reduces visual clutter!) */
 .sim-3d-pin {
   position: absolute; top: 0; left: 0;
   pointer-events: auto; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 5px 10px; border-radius: 7px; font-family: var(--font-ar); font-size: 0.72rem; font-weight: 800;
-  color: #F8FAFC; background: rgba(7, 15, 29, 0.94); border: 1px solid rgba(56, 189, 248, 0.65);
-  white-space: nowrap; direction: rtl; max-width: 240px; overflow: hidden; text-overflow: ellipsis;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.48);
-  transition: border-color 0.14s ease, background-color 0.14s ease, box-shadow 0.14s ease;
-}
-.sim-3d-pin-idx {
-  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-  width: 17px; height: 17px; border-radius: 4px;
-  background: rgba(56, 189, 248, 0.22); color: #7DD3FC; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 800;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; padding: 0; border-radius: 50%;
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800;
+  color: #F8FAFC; background: rgba(7, 15, 29, 0.90);
+  border: 1.5px solid rgba(56, 189, 248, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+  transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
 }
 .sim-3d-pin:hover, .sim-3d-pin.active {
   background: #0D9488; border-color: #FDE68A; color: #FFFFFF; z-index: 6;
-  box-shadow: 0 0 0 2px rgba(253, 230, 138, 0.45), 0 6px 14px rgba(0,0,0,0.52);
+  box-shadow: 0 0 0 3px rgba(253, 230, 138, 0.42), 0 4px 12px rgba(0, 0, 0, 0.6);
 }
-.sim-3d-pin.active .sim-3d-pin-idx, .sim-3d-pin:hover .sim-3d-pin-idx {
-  background: rgba(253, 230, 138, 0.28); color: #FEF08A;
+/* Single Active Callout Card (linked by 1 clean arrow) */
+.ms-active-callout {
+  position: absolute; top: 0; left: 0;
+  pointer-events: auto; cursor: pointer;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 6px 11px; border-radius: 8px;
+  background: rgba(7, 15, 29, 0.93);
+  border: 1.5px solid rgba(253, 230, 138, 0.85);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+  max-width: min(260px, 56vw);
+  z-index: 5;
+}
+.ms-active-callout-ar {
+  font-family: var(--font-ar); font-size: 0.76rem; font-weight: 800;
+  color: #FEF08A; direction: rtl; text-align: right; line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ms-active-callout-en {
+  font-family: var(--font-en); font-size: 0.68rem; font-weight: 700;
+  color: #7DD3FC; direction: ltr; text-align: left; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .ms-hud-top-right {
@@ -459,10 +540,101 @@ html.dark .visual-stage.dark-capable { background-color: #0B1628; color: var(--t
 
 @media (max-width: 760px) {
   .ms-stage-viewport { aspect-ratio: auto; height: 340px; min-height: 300px; }
-  .sim-3d-pin { font-size: 0.64rem; padding: 3px 7px; gap: 4px; max-width: 146px; }
-  .sim-3d-pin-idx { width: 14px; height: 14px; font-size: 0.59rem; }
+  .sim-3d-pin { width: 22px; height: 22px; font-size: 0.64rem; }
+  .ms-active-callout { padding: 4px 8px; max-width: min(195px, 62vw); }
+  .ms-active-callout-ar { font-size: 0.66rem; }
+  .ms-active-callout-en { font-size: 0.60rem; }
   .ms-hud-top-left { display: none; }
   .ms-hud-top-right { font-size: 0.64rem; right: 8px; top: 8px; max-width: calc(100% - 16px); }
+  .ms-lab-bar { padding: 10px 12px; }
+  .ms-physics-slider-wrap { flex-wrap: wrap; }
+  .ms-physics-bound { font-size: 0.68rem; }
+  .ms-insp-top { flex-direction: column; align-items: flex-start; }
+}
+
+/* Radiology Workstation Lab Bar & Clinical Physics Controls */
+.ms-lab-bar {
+  direction: rtl;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-hairline);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ms-lab-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.ms-lab-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-inline-end: 4px;
+}
+.ms-physics-row {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-hairline);
+  border-radius: 9px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ms-physics-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ms-physics-lbl {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ms-physics-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.ms-physics-badge.ok {
+  background: rgba(16, 185, 129, 0.14);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+html.dark .ms-physics-badge.ok { color: #6EE7B7; }
+.ms-physics-badge.info {
+  background: rgba(14, 165, 233, 0.14);
+  color: #0369A1;
+  border-color: rgba(14, 165, 233, 0.35);
+}
+html.dark .ms-physics-badge.info { color: #7DD3FC; }
+.ms-physics-badge.warn {
+  background: rgba(245, 158, 11, 0.16);
+  color: #B45309;
+  border-color: rgba(245, 158, 11, 0.42);
+}
+html.dark .ms-physics-badge.warn { color: #FCD34D; }
+.ms-physics-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: ltr;
+}
+.ms-physics-bound {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  direction: rtl;
+}
+.ms-physics-range {
+  min-width: 140px;
 }
 
 /* Playback & Interactive Timeline Dock */
@@ -534,8 +706,70 @@ html.dark .sim-btn.active { background: var(--turquoise); color: #05201D; border
 .sim-iq-card-lbl.navy { color: var(--navy); }
 .sim-iq-card-txt { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); line-height: 1.72; }
 
+/* Colored Tinted Layer on زبدة الامتحان Card (Bilingual AR + EN) */
+.sim-iq-card.exam-card {
+  background: linear-gradient(135deg, rgba(180, 138, 62, 0.16) 0%, rgba(13, 148, 136, 0.12) 100%);
+  border: 1.5px solid rgba(180, 138, 62, 0.48);
+  box-shadow: 0 4px 14px rgba(180, 138, 62, 0.08);
+}
+html.dark .sim-iq-card.exam-card {
+  background: linear-gradient(135deg, rgba(224, 184, 102, 0.16) 0%, rgba(45, 212, 191, 0.14) 100%);
+  border-color: rgba(224, 184, 102, 0.52);
+}
+.ms-exam-en-layer {
+  margin-top: 7px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: rgba(11, 31, 58, 0.06);
+  border-left: 3px solid var(--turquoise);
+  font-family: var(--font-en);
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.52;
+  direction: ltr;
+  text-align: left;
+}
+html.dark .ms-exam-en-layer {
+  background: rgba(15, 23, 42, 0.55);
+  color: #E2ECF9;
+}
+
+/* Structured Inspector Card: English Name + Arabic Title + Iraqi Explanation */
 .sim-inspector { padding: 14px 16px; background: var(--bg-surface); font-size: 0.9rem; }
-.sim-part-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ms-insp-card {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-hairline);
+}
+.ms-insp-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.ms-insp-titles { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ms-insp-en-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-en);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--turquoise);
+  background: var(--turquoise-bg);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+.ms-insp-ar-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.35;
+}
+.ms-insp-desc {
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 1.75;
+  font-size: 0.92rem;
+}
+.sim-part-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .sim-part-chip { padding: 6px 11px; border-radius: 6px; border: 1px solid var(--border-hairline); background: var(--bg-subtle); font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); transition: all 0.15s ease; }
 .sim-part-chip:hover, .sim-part-chip.selected { border-color: var(--turquoise); background: var(--turquoise-bg); color: var(--turquoise); }
 
