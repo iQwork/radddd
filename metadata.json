@@ -1,0 +1,6 @@
+{
+  "name": "منصة الدكتور ياسر ضياء الأسدي | Endodontic Radiography",
+  "description": "أكاديمية الدكتور ياسر ضياء الأسدي التفاعلية لطب وجراحة الفم والأسنان - الأشعة في علاج جذور الأسنان (Endodontic Radiography - Lecture 4)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
