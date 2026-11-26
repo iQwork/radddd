@@ -378,13 +378,16 @@ export function mountMediaStudio(
   let lastFrameMs = performance.now();
   let rafId = 0;
 
+  const resolveAssetUrl = (u: string): string => (u.startsWith("/src/") ? `.${u}` : u);
+  const resolvedImageUrl = resolveAssetUrl(spec.imageUrl);
+
   // Preload aligned clinical state images (for photorealistic real-image morphing)
   const extraImgMap: Record<string, HTMLImageElement> = {};
   if (spec.extraImages) {
     Object.entries(spec.extraImages).forEach(([key, url]) => {
       const im = new Image();
       im.referrerPolicy = "no-referrer";
-      im.src = url;
+      im.src = resolveAssetUrl(url);
       extraImgMap[key] = im;
     });
   }
@@ -408,7 +411,7 @@ export function mountMediaStudio(
     <div class="ms-stage-viewport" data-ms-viewport style="cursor:grab; touch-action:none;">
       <div class="ms-camera-layer" data-ms-camera>
         <img
-          src="${spec.imageUrl}"
+          src="${resolvedImageUrl}"
           alt="${spec.imageAlt.replace(/"/g, "&quot;")}"
           class="ms-stage-img"
           referrerpolicy="no-referrer"
@@ -417,7 +420,7 @@ export function mountMediaStudio(
         ${
           spec.supportsXray
             ? `<img
-                src="${spec.imageUrl}"
+                src="${resolvedImageUrl}"
                 alt=""
                 aria-hidden="true"
                 class="ms-stage-img ms-split-xray-img"

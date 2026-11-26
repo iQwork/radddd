@@ -204,10 +204,10 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p1-t1": {
     topicId: "p1-t1",
     simId: "p1-role-xray",
-    imageUrl: "/src/assets/images/p1_t1_anat_ideal_1795600071509.jpg",
+    imageUrl: "./src/assets/images/p1_t1_anat_ideal_1795600071509.jpg",
     extraImages: {
-      short: "/src/assets/images/p1_t1_anat_short_1795600095717.jpg",
-      over: "/src/assets/images/p1_t1_anat_over_1795600096512.jpg",
+      short: "./src/assets/images/p1_t1_anat_short_1795600095717.jpg",
+      over: "./src/assets/images/p1_t1_anat_over_1795600096512.jpg",
     },
     supportsXray: true,
     imageAlt: "Wet hemisected mandibular molar with K-file inside mesial canal, collimator beam to sensor, and corresponding radiograph",
@@ -320,9 +320,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p1-t2": {
     topicId: "p1-t2",
     simId: "p1-2d-shadow-sim",
-    imageUrl: "/src/assets/images/p1_t2_anat_shadow_1795600072292.jpg",
+    imageUrl: "./src/assets/images/p1_t2_anat_shadow_1795600072292.jpg",
     extraImages: {
-      cut: "/src/assets/images/p1_t2_anat_cut_1795600098023.jpg",
+      cut: "./src/assets/images/p1_t2_anat_cut_1795600098023.jpg",
     },
     supportsXray: true,
     imageAlt: "Straight metal X-ray collimator aimed through 3D bone-embedded molar with anatomical sagittal cut revealing two canals versus 2D superimposed radiograph",
@@ -442,7 +442,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p2-t1": {
     topicId: "p2-t1",
     simId: "p2-interp-types",
-    imageUrl: "/src/assets/images/p2_t1_anat_density_1795600073075.jpg",
+    imageUrl: "./src/assets/images/p2_t1_anat_density_1795600073075.jpg",
     supportsXray: true,
     imageAlt: "Wet hemisected molar with amalgam restoration, caries, pulp, lamina dura, and bone abscess matched to clinical radiograph and BW/OPG thumbnails",
     hudTitleAr: "جدول التفسير الشعاعي وأنواع الأشعة",
@@ -551,9 +551,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p2-t2": {
     topicId: "p2-t2",
     simId: "p2-bisecting-sim",
-    imageUrl: "/src/assets/images/p2_t2_incisor_xray_1795595819479.jpg",
+    imageUrl: "./src/assets/images/p2_t2_incisor_xray_1795595819479.jpg",
     extraImages: {
-      steep: "/src/assets/images/p2_t2_cone_steep_1795595902068.jpg",
+      steep: "./src/assets/images/p2_t2_cone_steep_1795595902068.jpg",
     },
     supportsXray: true,
     imageAlt: "Bisecting angle technique: sagittal maxillary incisor with tilted film held by finger, PID cone, and corresponding human incisor radiograph",
@@ -693,9 +693,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p3-t1": {
     topicId: "p3-t1",
     simId: "p3-paralleling-3d",
-    imageUrl: "/src/assets/images/p3_t1_paralleling_xcp_1795591372515.jpg",
+    imageUrl: "./src/assets/images/p3_t1_paralleling_xcp_1795591372515.jpg",
     extraImages: {
-      tilted: "/src/assets/images/p3_t1_tilted_edit_1795595877975.jpg",
+      tilted: "./src/assets/images/p3_t1_tilted_edit_1795595877975.jpg",
     },
     supportsXray: true,
     imageAlt: "Paralleling technique using XCP bite-block, indicator rod, aiming ring, and parallel film with perpendicular X-ray beam",
@@ -807,9 +807,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p3-t2": {
     topicId: "p3-t2",
     simId: "p3-suggestions-12",
-    imageUrl: "/src/assets/images/p3_t2_coronal_exact_1795607510788.jpg",
+    imageUrl: "./src/assets/images/p3_t2_coronal_exact_1795607510788.jpg",
     extraImages: {
-      balanced: "/src/assets/images/p3_t2_coronal_exact_balanced_1795607535023.jpg",
+      balanced: "./src/assets/images/p3_t2_coronal_exact_balanced_1795607535023.jpg",
     },
     supportsXray: true,
     imageAlt: "Left: coronal anatomical cross-section of maxilla with buccal steel X-ray collimator outside, maxillary molar hanging below intact maxillary sinus, and gloved finger inside oral cavity pressing white film against sloped hard palate near occlusal plane; Right: maxillary periapical radiograph with intact white sinus floor above all roots showing short buccal root and very long palatal root",
@@ -951,9 +951,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p4-t1": {
     topicId: "p4-t1",
     simId: "p4-slob-sim",
-    imageUrl: "/src/assets/images/p4_t1_slob_overlap_1795595817376.jpg",
+    imageUrl: "./src/assets/images/p4_t1_slob_overlap_1795595817376.jpg",
     extraImages: {
-      separated: "/src/assets/images/p4_t1_slob_premolar_1795591374321.jpg",
+      separated: "./src/assets/images/p4_t1_slob_premolar_1795591374321.jpg",
     },
     supportsXray: true,
     imageAlt: "Plastic film holder standardization with horizontal X-ray tube shift separating two premolar canals via SLOB rule",
@@ -1086,7 +1086,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p4-t2": {
     topicId: "p4-t2",
     simId: "p4-frames-clamps",
-    imageUrl: "/src/assets/images/p4_t2_anat_rubberdam_1795600174622.jpg",
+    imageUrl: "./src/assets/images/p4_t2_anat_rubberdam_1795600174622.jpg",
     supportsXray: true,
     imageAlt: "Clinical split macro photography of turquoise rubber dam with blue plastic radiolucent frame and clear radiograph versus shiny metal Young's clamp and white radiopaque masking radiograph",
     hudTitleAr: "جودة الأشعة: السد المطاطي البلاستيكي مقابل المعدني",
@@ -1191,7 +1191,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p5-t1": {
     topicId: "p5-t1",
     simId: "p5-processing-sim",
-    imageUrl: "/src/assets/images/p5_t1_film_processor_1795591376644.jpg",
+    imageUrl: "./src/assets/images/p5_t1_film_processor_1795591376644.jpg",
     supportsXray: false,
     imageAlt: "Quick automated processor heated to 37.7 C with developer and fixer baths, chronological film mount, and magnification monitor",
     hudTitleAr: "التحميض الآلي السريع (37.7°C) والتأريخ والتكبير",
@@ -1310,9 +1310,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p5-t2": {
     topicId: "p5-t2",
     simId: "p5-8-info",
-    imageUrl: "/src/assets/images/p5_t2_anat_v4_1795600208024.jpg",
+    imageUrl: "./src/assets/images/p5_t2_anat_v4_1795600208024.jpg",
     extraImages: {
-      xray: "/src/assets/images/p5_t2_anat_xray_1795600226361.jpg",
+      xray: "./src/assets/images/p5_t2_anat_xray_1795600226361.jpg",
     },
     supportsXray: true,
     imageAlt: "Photorealistic bisected mandibular molars inside trabecular bone showing pulp stones sclerosis, external root resorption, K-file with separated tip inside canal lumen, gutta-percha master cone inside canal, lateral perforation, and mental foramen",
@@ -1438,7 +1438,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p6-t1": {
     topicId: "p6-t1",
     simId: "p6-ccd-overview",
-    imageUrl: "/src/assets/images/p6_t1_ccd_sensor_1795591377919.jpg",
+    imageUrl: "./src/assets/images/p6_t1_ccd_sensor_1795591377919.jpg",
     supportsXray: false,
     imageAlt: "Transition from silver halide film to direct digital CCD wired sensor connected via USB to laptop displaying instant dental radiograph",
     hudTitleAr: "مقدمة التصوير الرقمي والنظام المباشر (CCD)",
@@ -1549,7 +1549,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p6-t2": {
     topicId: "p6-t2",
     simId: "p6-rvg-components",
-    imageUrl: "/src/assets/images/p6_t2_rvg_system_1795591453838.jpg",
+    imageUrl: "./src/assets/images/p6_t2_rvg_system_1795591453838.jpg",
     supportsXray: false,
     imageAlt: "RVG direct digital system components left-to-right: Radio CCD sensor in disposable sheath with fiber-optic shield and cold sterilization tray, Visio monitor unit, Graphy printer",
     hudTitleAr: "مكونات النظام الرقمي المباشر الثلاثة (RVG)",
@@ -1657,7 +1657,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p7-t1": {
     topicId: "p7-t1",
     simId: "p7-ccd-pros-cons",
-    imageUrl: "/src/assets/images/p7_t1_bulky_ccd_1795591380751.jpg",
+    imageUrl: "./src/assets/images/p7_t1_bulky_ccd_1795591380751.jpg",
     supportsXray: false,
     imageAlt: "Bulky thick wired CCD sensor pressing lingual mucosa beside lower molar versus enhanced monitor image and storage HDD",
     hudTitleAr: "حساس الـ CCD: المزايا الخمس والمساوئ الأربع",
@@ -1767,7 +1767,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p7-t2": {
     topicId: "p7-t2",
     simId: "p7-psp-scanner-sim",
-    imageUrl: "/src/assets/images/p7_t2_psp_scanner_1795591454905.jpg",
+    imageUrl: "./src/assets/images/p7_t2_psp_scanner_1795591454905.jpg",
     supportsXray: false,
     imageAlt: "PSP indirect storage phosphor plate exposed wirelessly by X-ray then scanned by red laser drum scanner in 20-30 seconds",
     hudTitleAr: "نظام الفوسفور المخزن (PSP) ومسح الليزر",
@@ -1889,7 +1889,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p8-t1": {
     topicId: "p8-t1",
     simId: "p8-psp-indirect",
-    imageUrl: "/src/assets/images/p8_t1_anat_indirect_1795600173672.jpg",
+    imageUrl: "./src/assets/images/p8_t1_anat_indirect_1795600173672.jpg",
     supportsXray: false,
     imageAlt: "Left: flexible PSP plates sizes 0, 2, 3 with dental model and remote wall X-ray head; Right: flatbed transparency scanner digitizing green silver halide film onto LCD monitor",
     hudTitleAr: "مزايا ومساوئ PSP والنظام غير المباشر (Indirect)",
@@ -2013,9 +2013,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p8-t2": {
     topicId: "p8-t2",
     simId: "p8-cbct-scanner-3d",
-    imageUrl: "/src/assets/images/p8_t2_patient_cbct_small_fov_1795604875172.jpg",
+    imageUrl: "./src/assets/images/p8_t2_patient_cbct_small_fov_1795604875172.jpg",
     extraImages: {
-      large: "/src/assets/images/p8_t2_patient_cbct_large_fov_1795604900922.jpg",
+      large: "./src/assets/images/p8_t2_patient_cbct_large_fov_1795604900922.jpg",
     },
     supportsXray: false,
     imageAlt: "Photorealistic clinical dental CBCT suite with a real living human patient inside the rotating C-arm gantry, narrow 4x4 cm teal cone beam focused on the jaw transitioning to wide amber full-head FOV and 3D workstation monitor",
@@ -2140,9 +2140,9 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p9-t1": {
     topicId: "p9-t1",
     simId: "p9-cbct-slices-sim",
-    imageUrl: "/src/assets/images/p9_t1_cbct_clean_1795595818304.jpg",
+    imageUrl: "./src/assets/images/p9_t1_cbct_clean_1795595818304.jpg",
     extraImages: {
-      metal: "/src/assets/images/p9_t1_cbct_artifacts_1795591456401.jpg",
+      metal: "./src/assets/images/p9_t1_cbct_artifacts_1795591456401.jpg",
     },
     supportsXray: true,
     imageAlt: "CBCT orthogonal axial, sagittal, and coronal planes with 1:1 isotropic voxel transitioning to metallic beam-hardening starburst artifacts and motion blur",
@@ -2268,7 +2268,7 @@ export const TOPIC_STUDIOS: Record<string, TopicStudioSpec> = {
   "p9-t2": {
     topicId: "p9-t2",
     simId: "p9-cbct-apps",
-    imageUrl: "/src/assets/images/p9_t2_anat_cbct_upright_1795604875635.jpg",
+    imageUrl: "./src/assets/images/p9_t2_anat_cbct_upright_1795604875635.jpg",
     supportsXray: true,
     imageAlt: "Upright photorealistic bisected human mandibular posterior jaw showing curved mesial root with branching canals, apical periodontitis defect, pink gutta-percha obturation cone inside canal lumen stopping at apex, vertical root fracture hairline, and mid-root lateral resorption",
     hudTitleAr: "التطبيقات السريرية الستة للـ CBCT بعلاج الجذور",
