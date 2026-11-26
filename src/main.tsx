@@ -1306,6 +1306,7 @@ function animateHeroCounters(): void {
 }
 
 function boot(): void {
+  document.getElementById("gh-static-css")?.remove();
   loadState();
   animateHeroCounters();
   updateGlobalProgressUI();
