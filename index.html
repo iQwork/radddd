@@ -203,5 +203,21 @@
   <div id="toastBanner" class="toast-banner" role="status" aria-live="polite"></div>
 
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var rawEntry = document.querySelector('script[src="/src/main.tsx"]');
+        if (!window.ACADEMY_PAGES && rawEntry) {
+          if (location.protocol !== 'file:') {
+            fetch('./docs/index.html', { method: 'GET' })
+              .then(function (r) {
+                if (r.ok) location.replace('./docs/');
+              })
+              .catch(function () {});
+          }
+        }
+      }, 250);
+    });
+  </script>
 </body>
 </html>
