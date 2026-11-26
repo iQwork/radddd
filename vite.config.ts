@@ -28,9 +28,20 @@ export default defineConfig(() => {
           }
           if (fs.existsSync(distDir)) {
             fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
-            const docsDir = path.resolve(__dirname, 'docs');
-            fs.rmSync(docsDir, {recursive: true, force: true});
-            fs.cpSync(distDir, docsDir, {recursive: true, force: true});
+            const distAssetsDir = path.join(distDir, 'assets');
+            const staticDistDir = path.resolve(__dirname, 'static-dist');
+            fs.mkdirSync(staticDistDir, {recursive: true});
+            if (fs.existsSync(distAssetsDir)) {
+              const files = fs.readdirSync(distAssetsDir);
+              const jsFile = files.find((f) => f.startsWith('index-') && f.endsWith('.js'));
+              const cssFile = files.find((f) => f.startsWith('index-') && f.endsWith('.css'));
+              if (jsFile) {
+                fs.copyFileSync(path.join(distAssetsDir, jsFile), path.join(staticDistDir, 'app.js'));
+              }
+              if (cssFile) {
+                fs.copyFileSync(path.join(distAssetsDir, cssFile), path.join(staticDistDir, 'app.css'));
+              }
+            }
           }
         },
       },
