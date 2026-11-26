@@ -16,6 +16,12 @@ export default defineConfig(() => {
       {
         name: 'copy-unbundled-src-assets',
         apply: 'build',
+        transformIndexHtml(html: string): string {
+          return html.replace(
+            /<!--\s*gh-pages-static-only-start\s*-->[\s\S]*?<!--\s*gh-pages-static-only-end\s*-->/g,
+            ''
+          );
+        },
         closeBundle(error?: Error): void {
           if (error) {
             return;
@@ -29,17 +35,21 @@ export default defineConfig(() => {
           if (fs.existsSync(distDir)) {
             fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
             const distAssetsDir = path.join(distDir, 'assets');
-            const staticDistDir = path.resolve(__dirname, 'static-dist');
-            fs.mkdirSync(staticDistDir, {recursive: true});
+            const rootAssetsDir = path.resolve(__dirname, 'assets');
+            fs.mkdirSync(rootAssetsDir, {recursive: true});
             if (fs.existsSync(distAssetsDir)) {
               const files = fs.readdirSync(distAssetsDir);
               const jsFile = files.find((f) => f.startsWith('index-') && f.endsWith('.js'));
               const cssFile = files.find((f) => f.startsWith('index-') && f.endsWith('.css'));
               if (jsFile) {
-                fs.copyFileSync(path.join(distAssetsDir, jsFile), path.join(staticDistDir, 'app.js'));
+                const rawJs = fs.readFileSync(path.join(distAssetsDir, jsFile), 'utf8');
+                fs.writeFileSync(
+                  path.join(rootAssetsDir, 'app.js'),
+                  '(function () {\n' + rawJs + '\n})();\n'
+                );
               }
               if (cssFile) {
-                fs.copyFileSync(path.join(distAssetsDir, cssFile), path.join(staticDistDir, 'app.css'));
+                fs.copyFileSync(path.join(distAssetsDir, cssFile), path.join(rootAssetsDir, 'app.css'));
               }
             }
           }

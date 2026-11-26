@@ -12,6 +12,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- gh-pages-static-only-start -->
+  <script>
+    (function () {
+      var h = location.hostname || '';
+      if (h.indexOf('github.io') !== -1 || location.protocol === 'file:') {
+        window.__GH_STATIC_MODE = true;
+        document.write('<link rel="stylesheet" href="./assets/app.css" />');
+      }
+    })();
+  </script>
+  <!-- gh-pages-static-only-end -->
 </head>
 <body>
   <header class="topbar">
@@ -203,28 +214,34 @@
   <div id="toastBanner" class="toast-banner" role="status" aria-live="polite"></div>
 
   <script type="module" src="/src/main.tsx"></script>
+  <!-- gh-pages-static-only-start -->
   <script>
     (function () {
-      var devEntry = document.querySelector('script[src="/src/main.tsx"]');
-      if (!devEntry) return;
-      function loadStaticBundle() {
-        if (window.ACADEMY_PAGES || window.__staticFallbackLoaded) return;
-        if (!document.querySelector('script[src="/src/main.tsx"]')) return;
-        window.__staticFallbackLoaded = true;
-        var css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = './static-dist/app.css';
-        document.head.appendChild(css);
+      function injectStatic() {
+        if (window.ACADEMY_PAGES || window.__staticInjected) return;
+        window.__staticInjected = true;
+        if (!document.querySelector('link[href="./assets/app.css"]')) {
+          var css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = './assets/app.css';
+          document.head.appendChild(css);
+        }
         var js = document.createElement('script');
-        js.type = 'module';
-        js.src = './static-dist/app.js';
+        js.src = './assets/app.js';
         document.body.appendChild(js);
       }
-      devEntry.addEventListener('error', loadStaticBundle);
-      window.addEventListener('load', function () {
-        setTimeout(loadStaticBundle, 300);
-      });
+      if (window.__GH_STATIC_MODE) {
+        injectStatic();
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          if (!window.ACADEMY_PAGES) injectStatic();
+        });
+        window.addEventListener('load', function () {
+          setTimeout(injectStatic, 200);
+        });
+      }
     })();
   </script>
+  <!-- gh-pages-static-only-end -->
 </body>
 </html>
